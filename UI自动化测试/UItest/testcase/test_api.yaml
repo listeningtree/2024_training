@@ -1,0 +1,219 @@
+-
+  name: 1.输入100以内个字符（不包括100字符），可以正常输入
+  task_id: 测试任务id：01
+  task_name: 测试任务名称：输入框字符长度限制效果测试
+  test_case_id: 测试用例id：0101
+  request:
+    url: https://www.baidu.com/s
+    method: get
+    headers:
+      User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.97 Safari/537.36 Edg/83.0.478.50
+      Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
+  param: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
+  test: '"queryEnc":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"'
+#百度获取到的用户输入字段(queryEnc)为以上字段时 用例通过
+
+-
+  name: 2.输入100字符，可以正常输入
+  task_id: 测试任务id：01
+  task_name: 测试任务名称：输入框字符长度限制效果测试
+  test_case_id: 测试用例id：0102
+  request:
+    url: https://www.baidu.com/s
+    method: get
+    headers:
+      User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.97 Safari/537.36 Edg/83.0.478.50
+      Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
+  param: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+  test: '"queryEnc":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"'
+#百度获取到的用户输入字段(queryEnc)为以上字段时 用例通过
+
+-
+  name: 3.输入超过100字符（如：101字符），超过100字符部分无法正常输入
+  task_id: 测试任务id：01
+  task_name: 测试任务名称：输入框字符长度限制效果测试
+  test_case_id: 测试用例id：0103
+  request:
+    url: https://www.baidu.com/s
+    method: get
+    headers:
+      User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.97 Safari/537.36 Edg/83.0.478.50
+      Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
+  param: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+  test: '"queryEnc":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"'
+# 百度获取到的用户输入字段(queryEnc)为以上字段时 用例通过 （由于设定超过100字符部分无法正常输入，所以该字段要比原用户输入字段尾端少一个a字符）
+
+-
+  name: 4.输入为空，不跳转搜索结果页，回到初始搜索界面
+  task_id: 测试任务id：01
+  task_name: 测试任务名称：输入框字符长度限制效果测试
+  test_case_id: 测试用例id：0104
+  request:
+    url: https://www.baidu.com/s
+    method: get
+    headers:
+      User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.97 Safari/537.36 Edg/83.0.478.50
+      Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
+  param: ''
+  test: 'content="全球领先的中文搜索引擎、致力于让网民更便捷地获取信息，找到所求。百度超过千亿的中文网页数据库，可以瞬间找到相关的搜索结果。"'
+  #最开始的搜索页才会出现这段文字 输入为空时 点击搜索会跳转会最开始的搜索页 所以返回页面有如上这段文字时用例通过
+
+#5
+-
+  name: 5.特殊字符测试：输入空格，不跳转搜索结果页，回到初始搜索页
+  task_id: 测试任务id：01
+  task_name: 测试任务名称：输入框字符长度限制效果测试
+  test_case_id: 测试用例id：0105
+  request:
+    url: https://www.baidu.com/s
+    method: get
+    headers:
+      User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.97 Safari/537.36 Edg/83.0.478.50
+      Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
+  param: ' '
+  test: 'content="全球领先的中文搜索引擎、致力于让网民更便捷地获取信息，找到所求。百度超过千亿的中文网页数据库，可以瞬间找到相关的搜索结果。"'
+  #最开始的搜索页才会出现这段文字 输入为空时 点击搜索会跳转会最开始的搜索页 所以返回页面有如上这段文字时用例通过
+
+#6
+-
+  name: 6.输入20以内个字符（不包括20字符），点击百度一下按钮，返回关于输入的所有字符的搜索结果界面
+  task_id: 测试任务id：02
+  task_name: 测试任务名称：搜索内容只截取前20个字符功能测试
+  test_case_id: 测试用例id：0201
+  request:
+    url: https://www.baidu.com/s
+    method: get
+    headers:
+      User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.97 Safari/537.36 Edg/83.0.478.50
+      Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
+  param: aaaaaaaaaaaaaaaaaaa
+  test: '"query":"aaaaaaaaaaaaaaaaaaa"'
+  #百度内部处理用户输入字段后得到的字段(query)为aaaaaaaaaaaaaaaaaaa时用例通过
+
+#7
+-
+  name: 7.输入20个字符，点击百度一下按钮，返回关于输入的20个字符的搜索结果界面
+  task_id: 测试任务id：02
+  task_name: 测试任务名称：搜索内容只截取前20个字符功能测试
+  test_case_id: 测试用例id：0202
+  request:
+    url: https://www.baidu.com/s
+    method: get
+    headers:
+      User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.97 Safari/537.36 Edg/83.0.478.50
+      Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
+  param: aaaaaaaaaaaaaaaaaaaa
+  test: '"query":"aaaaaaaaaaaaaaaaaaaa"'
+  #百度内部处理用户输入字段后得到的字段为aaaaaaaaaaaaaaaaaaaa时用例通过
+
+#8
+-
+  name: 8.输入超过20个字符，点击百度一下按钮，返回关于所输入字符的前20个字符的搜索结果界面
+  task_id: 测试任务id：02
+  task_name: 测试任务名称：搜索内容只截取前20个字符功能测试
+  test_case_id: 测试用例id：0203
+  request:
+    url: https://www.baidu.com/s
+    method: get
+    headers:
+      User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.97 Safari/537.36 Edg/83.0.478.50
+      Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
+  param: aaaaaaaaaaaaaaaaaaaaa
+  test: '"query":"aaaaaaaaaaaaaaaaaaaa"'
+  #百度内部处理用户输入字段后得到的字段为aaaaaaaaaaaaaaaaaaaa时用例通过
+
+#9
+-
+  name: 9.输入不包含<和>的20以内个字符，点击百度一下按钮返回关于输入的所有字符的搜索结果界面
+  task_id: 测试任务id：03
+  task_name: 测试任务名称：搜索内容自动去除”<“和”>“字符功能测试
+  test_case_id: 测试用例id：0301
+  request:
+    url: https://www.baidu.com/s
+    method: get
+    headers:
+      User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.97 Safari/537.36 Edg/83.0.478.50
+      Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
+  param: aaaaaaaaaaaaaaa
+  test: '"query":"aaaaaaaaaaaaaaa"'
+  #百度内部处理用户输入字段后得到的字段为aaaaaaaaaaaaaaa时用例通过
+
+#10
+-
+  name: 10.输入包含一个<的20以内个字符，点击百度一下按钮，返回关于去除<的输入字符的搜索结果界面
+  task_id: 测试任务id：03
+  task_name: 测试任务名称：搜索内容自动去除”<“和”>“字符功能测试
+  test_case_id: 测试用例id：0302
+  request:
+    url: https://www.baidu.com/s
+    method: get
+    headers:
+      User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.97 Safari/537.36 Edg/83.0.478.50
+      Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
+  param: aaaaaaaaaaaaaa<
+  test: '"query":"aaaaaaaaaaaaaa"'
+  #百度内部处理用户输入字段后得到的字段为aaaaaaaaaaaaaa时用例通过
+
+#11
+-
+  name: 11.输入包含两个<的20以内个字符，点击百度一下按钮，返回关于去除<的输入字符的搜索结果界面
+  task_id: 测试任务id：03
+  task_name: 测试任务名称：搜索内容自动去除”<“和”>“字符功能测试
+  test_case_id: 测试用例id：0303
+  request:
+    url: https://www.baidu.com/s
+    method: get
+    headers:
+      User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.97 Safari/537.36 Edg/83.0.478.50
+      Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
+  param: aaaaaaaaaaaaa<<
+  test: '"query":"aaaaaaaaaaaaa"'
+  #百度内部处理用户输入字段后得到的字段为aaaaaaaaaaaaa时用例通过
+
+#12
+-
+  name: 12.输入包含一个>的20以内个字符，点击百度一下按钮，返回关于去除所有>的输入字符的搜索结果界面
+  task_id: 测试任务id：03
+  task_name: 测试任务名称：搜索内容自动去除”<“和”>“字符功能测试
+  test_case_id: 测试用例id：0304
+  request:
+    url: https://www.baidu.com/s
+    method: get
+    headers:
+      User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.97 Safari/537.36 Edg/83.0.478.50
+      Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
+  param: aaaaaaaaaaaaaa>
+  test: '"query":"aaaaaaaaaaaaaa"'
+  #百度内部处理用户输入字段后得到的字段为aaaaaaaaaaaaaa时用例通过
+
+#13
+-
+  name: 13.输入包含两个>的20以内个字符，点击百度一下按钮，返回关于去除所有>的输入字符的搜索结果界面
+  task_id: 测试任务id：03
+  task_name: 测试任务名称：搜索内容自动去除”<“和”>“字符功能测试
+  test_case_id: 测试用例id：0305
+  request:
+    url: https://www.baidu.com/s
+    method: get
+    headers:
+      User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.97 Safari/537.36 Edg/83.0.478.50
+      Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
+  param: aaaaaaaaaaaaa>>
+  test: '"query":"aaaaaaaaaaaaa"'
+  #百度内部处理用户输入字段后得到的字段为aaaaaaaaaaaaa时用例通过
+
+#14
+-
+  name: 14.输入包含一个<和一个>的20以内个字符，点击百度一下按钮，返回关于去除>和<的输入字符的搜索结果界面
+  task_id: 测试任务id：03
+  task_name: 测试任务名称：搜索内容自动去除”<“和”>“字符功能测试
+  test_case_id: 测试用例id：0306
+  request:
+    url: https://www.baidu.com/s
+    method: get
+    headers:
+      User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.97 Safari/537.36 Edg/83.0.478.50
+      Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
+  param: aaaaaaaaaaaaa<>
+  test: '"query":"aaaaaaaaaaaaa"'
+  #百度内部处理用户输入字段后得到的字段为aaaaaaaaaaaaa时用例通过

@@ -1,0 +1,1 @@
+WARNING  selenium.webdriver.common.selenium_manager:selenium_manager.py:133 Exception trying to discover chromedriver version: error sending request for url (https://chromedriver.storage.googleapis.com/LATEST_RELEASE_100): error trying to connect: tls handshake eof
